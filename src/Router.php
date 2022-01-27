@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Router;
+namespace App;
 
 class Router{
     private $handlers;

@@ -1,6 +1,6 @@
 <?php
 
-include "./src/App.php";
-include "./src/Router.php";
+include "./vendor/autoload.php";
+
 use App\App;
 $app = new App;

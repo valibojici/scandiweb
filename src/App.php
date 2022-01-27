@@ -2,20 +2,20 @@
 
 namespace App;
 
-use App\Router\Router;
+use App\Router;
 
 class App{
     private $router;
     public function __construct(){
-        $router = new Router();
-        $router->get('/scandiweb/', function() {
+        $this->router = new Router();
+        $this->router->get('/scandiweb/', function() {
             echo 'root';
         });
 
-        $router->get('/scandiweb/caca', function() {
+        $this->router->get('/scandiweb/caca', function() {
             echo 'caca';
         });
 
-        $router->run();
+        $this->router->run();
     }
 }
