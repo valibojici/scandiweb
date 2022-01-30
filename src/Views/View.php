@@ -15,7 +15,8 @@ class View
 
     public function set(string $key, mixed $val) : void
     {
-        $data[$key] = self::htmlEncode($val);
+        self::htmlEncode($val);
+        $this->data[$key] = $val;
     }
 
     public function render(string $partial, string $template)

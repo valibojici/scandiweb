@@ -2,21 +2,18 @@
 
 namespace App\Controllers;
 
-use App\App;
 use App\Views\View;
+use App\Models\ProductService;
 
 class HomeController extends Controller
 {
     public function defaultAction(array $params = [])
     {
-        $db = $this->getDB();
-        $stmt = $db->query('SELECT name FROM products');
-        while ($row = $stmt->fetch())
-        {
-            echo $row['name'] . "</br>";
-        } 
-        
+        $productService = new ProductService();
+        $products = $productService->getProducts();
+        // $products = array_map(function($product) { return $product->getInfo(); }, $products);
         $view = new View();
-        $view->render('productlist','home');
+        $view->set('products', $products);
+        $view->render('products', 'home');
     }
 }
