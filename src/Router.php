@@ -5,7 +5,6 @@ namespace App;
 class Router
 {
     private array $handlers;
-    private Request $request;
 
     public function get($path, $action, $params = []){
         $this->add('GET', $path, $action, $params);
@@ -13,11 +12,6 @@ class Router
 
     public function post($path, $action, $params = []){
         $this->add('POST', $path, $action, $params);
-    }
-
-    public function __construct(Request $request)
-    {
-        $this->request = $request;
     }
 
     private function add(string $method, string $path, $action, array $params = [])
@@ -28,11 +22,11 @@ class Router
             'params' => $params];
     }
 
-    public function run()
+    public function run(Request $request)
     {
-        $path = $this->request->getPath();
-        $method = $this->request->getMethod();
-        $params = $this->request->getParams();
+        $path = $request->getPath();
+        $method = $request->getMethod();
+        $params = $request->getParams();
 
         foreach($this->handlers as $handle_path => $handle){
             if($handle_path === $path && $method === $handle['method']){
@@ -41,6 +35,6 @@ class Router
             }
         }
 
-        echo $path . ' not found';
+        echo 'Not Found';
     }
 }
