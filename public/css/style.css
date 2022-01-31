@@ -1,0 +1,9 @@
+.square::before{
+    content: "";
+    display: block;
+    padding-top: 50%;
+}
+
+.square{
+    width: 25% !important;
+}

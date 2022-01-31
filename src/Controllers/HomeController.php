@@ -11,8 +11,9 @@ class HomeController extends Controller
     {
         $productService = new ProductService();
         $products = $productService->getProducts();
-        // $products = array_map(function($product) { return $product->getInfo(); }, $products);
+        $products = array_map(function($product) { return ['info' => $product->getInfo(), 'properties' => $product->getProperties()]; }, $products);
         $view = new View();
+
         $view->set('products', $products);
         $view->render('products', 'home');
     }

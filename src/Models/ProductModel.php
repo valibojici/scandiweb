@@ -1,101 +1,102 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
-abstract class ProductModel extends Model
+abstract class ProductModel
 {
-    private int $id;
-    private string $sku;
-    private string $name;
-    private float $price;
-    private array $errors;
+    protected $fields = [
+        'id' => false,
+        'sku' => false,
+        'name' => false,
+        'price' => false
+    ];
+    protected $validator;
+    protected array $errors;
 
-    public function setID(int $id)
+    public function __construct($validator)
     {
-        $this->id = $id;
+        $this->validator = $validator;
     }
 
-    public function setSKU(string $sku)
+    public function setID($id)
     {
-        $this->sku = trim($sku);
+        $this->fields['id'] = $this->validator->validateInt($id);
+        unset($this->errors['id']);
+        return $this;
     }
 
-    public function setName(string $name)
+    public function setSKU($sku)
     {
-        $this->name = $name;
+        $this->fields['sku'] = $this->validator->validateString($sku);
+        unset($this->errors['sku']);
+        return $this;
     }
 
-    public function setPrice(float $price)
+    public function setName($name)
     {
-        $this->price = $price;
+        $this->fields['name'] = $this->validator->validateString($name);
+        unset($this->errors['name']);
+        return $this;
     }
 
-    public function validate() : bool
+    public function setPrice($price)
     {
-        $isValid = true;
+        $this->fields['price'] = $this->validator->validateFloat($price);
+        unset($this->errors['price']);
+        return $this;
+    }
 
-        if(isset($this->id)){
-            if(!this->validateInt($this->id)){
-                $this->errors['id'] = 'ID is not an integer';
-                $isValid = false;
-            }
+    public function getID()
+    {
+        return $this->fields['id'] ?? false;
+    }
+
+    public function getSKU()
+    {
+        return $this->fields['sku'] ?? false;
+    }
+
+    public function getPrice()
+    {
+        return $this->fields['price'] ?? false;
+    }
+
+    public function getName()
+    {
+        return $this->fields['name'] ?? false;
+    }
+
+    public function getErrors() : array
+    {
+        return $this->errors ?? [];
+    }
+
+    public function isValid() : bool
+    {
+        foreach($this->fields as $fieldName => $fieldVal){
+            $this->testAndSetError($fieldName);
         }
-
-        if(!$this->validateString($this->sku)){
-            $this->errors['sku'] = 'Invalid SKU';
-            $isValid = false;
-        }
-        else if(checkSKUExists($this->sku)){
-            $this->errors['sku'] = 'SKU exists';
-            $isValid = false;
-        }
-
-        if(!$this->validateString($this->name)){
-            $this->errors['name'] = 'Invalid name';
-            $isValid = false;
-        }
-
-        if(!$this->validateFloat($this->price) || $this->price < 0){
-            $this->errors['price'] = 'Invalid price';
-            $isValid = false;
-        }
-
-        return $isValid;
+        return $this->errors == [];
     }
 
-    protected function save()
+    public function getInfo() : array
     {
-         
+        return [
+            'id' => $this->getID(),
+            'name' => $this->getName(),
+            'sku' => $this->getSKU(),
+            'price' => $this->getPrice()
+        ];
     }
 
-    protected function checkSKUExists($sku) : bool
+    private function testAndSetError($field)
     {
-        $stmt = $this->db->prepare('SELECT 1 FROM products WHERE sku LIKE ?');
-        $stmt->execute($sku);
-        return $stmt->rowCount() > 0;
-    }
-
-    protected function validateString($val) : bool
-    {
-        if(!is_string($val) || strlen($val) == 0){
-            return false;
+        $func = 'get' . $field;
+        if($this->$func() === false){
+            $this->errors[$field] = 'Invalid ' . $field;
         }
-        return true;
     }
 
-    protected function validateFloat($val) : bool 
-    {
-        if(!is_numeric($val) || !is_float($val)){
-            return false;
-        }
-        return true;
-    }
+    abstract public function getProperties();
 
-    protected function validateInt($val) : bool
-    {
-        if(!is_numeric($val) || !is_int($val)){
-            return false;
-        }
-        return true;
-    }
 }
