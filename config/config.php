@@ -4,5 +4,6 @@ const CONFIG = [
     'DB' => 'scandiweb',
     'USER' => 'root',
     'PASSWORD' => 'root',
-    'CHARSET' => 'utf8mb4'    
+    'CHARSET' => 'utf8mb4',
+    
 ];
