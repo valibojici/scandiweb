@@ -1,9 +1,21 @@
-.square::before{
-    content: "";
-    display: block;
-    padding-top: 50%;
+.product-card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.square{
-    width: 25% !important;
+body {
+  position: relative;
+  padding-bottom: 8vh;
+  min-height: 92vh;
+}
+
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 8vh;
+}
+
+.delete-checkbox {
+  transform: scale(1.5);
 }
