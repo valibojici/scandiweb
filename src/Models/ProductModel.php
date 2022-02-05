@@ -82,10 +82,9 @@ abstract class ProductModel
     public function getInfo() : array
     {
         return [
-            'id' => $this->getID(),
             'name' => $this->getName(),
             'sku' => $this->getSKU(),
-            'price' => $this->getPrice()
+            'price' => number_format($this->getPrice(),2) . '$'
         ];
     }
 

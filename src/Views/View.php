@@ -19,7 +19,7 @@ class View
         $this->data[$key] = $val;
     }
 
-    public function render(string $partial, string $template)
+    public function render(string $partial, string $template) : void
     {
         extract($this->data);
 

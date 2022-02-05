@@ -25,7 +25,7 @@ class BookModel extends ProductModel
     public function getProperties() : array
     {
         return [
-            'weight' => $this->getWeight()
+            'weight' => $this->getWeight() . 'KG'
         ];
     }
 }

@@ -51,7 +51,7 @@ class FurnitureModel extends ProductModel
     public function getProperties()
     {
         return [
-            'dimensions' => implode('x',[$this->getHeight(), $this->getWidth(), $this->getLength()])
+            'dimensions' => implode('x',[$this->getHeight(), $this->getWidth(), $this->getLength()]) . 'CM'
         ];
     }
 }

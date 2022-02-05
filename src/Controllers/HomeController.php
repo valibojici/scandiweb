@@ -15,6 +15,7 @@ class HomeController extends Controller
         $view = new View();
 
         $view->set('products', $products);
+        $view->set('title', 'Product List');
         $view->render('products', 'home');
     }
 }

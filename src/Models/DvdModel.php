@@ -25,7 +25,7 @@ class DvdModel extends ProductModel
     public function getProperties() : array
     {
         return [
-            'size' => $this->getSize()
+            'size' => $this->getSize() . 'MB'
         ];
     }
 }

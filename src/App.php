@@ -23,6 +23,13 @@ class App{
             var_dump($params);
         });
 
+        $this->router->post('/scandiweb/delete-product', function($params) {
+            foreach($params as $k => $v){
+                echo $k . ' ';
+                print_r(json_decode($v));
+            }
+        });
+
         $this->router->run($this->request);
     }
 }
