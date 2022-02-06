@@ -4,8 +4,7 @@ namespace App;
 
 use App\Router;
 use App\Request;
-use App\Controllers\HomeController;
-
+use App\Controllers\ProductController;
 
 class App{
     private $router;
@@ -16,19 +15,10 @@ class App{
         $this->request = new Request();
         $this->router = new Router();
 
-        $this->router->get('/scandiweb', [new HomeController(), 'defaultAction']);
-
-        $this->router->get('/scandiweb/add-product', function($params) {
-            echo 'caca </br>';
-            var_dump($params);
-        });
-
-        $this->router->post('/scandiweb/delete-product', function($params) {
-            foreach($params as $k => $v){
-                echo $k . ' ';
-                print_r(json_decode($v));
-            }
-        });
+        $this->router->get('/scandiweb', [new ProductController(), 'index']);
+        $this->router->get('/scandiweb/add-product', [new ProductController(), 'add']);
+        $this->router->post('/scandiweb/delete-products', [new ProductController(), 'deleteProducts']);
+        $this->router->post('/scandiweb/add-product', [new ProductController(), 'addProduct']);
 
         $this->router->run($this->request);
     }

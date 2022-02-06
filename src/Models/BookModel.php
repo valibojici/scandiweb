@@ -22,10 +22,15 @@ class BookModel extends ProductModel
         return $this->fields['weight'] ?? false;
     }
 
-    public function getProperties() : array
+    public function getDisplayProperties() : array
     {
         return [
             'weight' => $this->getWeight() . 'KG'
         ];
+    }
+
+    public function getFields()
+    {
+        return [['name' => 'weight', 'unit' => 'KG']];
     }
 }

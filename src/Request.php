@@ -30,7 +30,9 @@ class Request
         return $this->params;
     }
 
-    private function parseURL($url){
-        return rtrim(parse_url($url, PHP_URL_PATH), '/');
+    private function parseURL($url)
+    {
+        $url = rtrim(parse_url($url, PHP_URL_PATH), '/');
+        return $url == '' ? '/' : $url;
     }
 }

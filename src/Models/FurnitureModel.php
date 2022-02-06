@@ -48,10 +48,16 @@ class FurnitureModel extends ProductModel
         return $this->fields['length'] ?? false;
     }
 
-    public function getProperties()
+    public function getDisplayProperties()
     {
         return [
             'dimensions' => implode('x',[$this->getHeight(), $this->getWidth(), $this->getLength()]) . 'CM'
         ];
+    }
+
+    public function getFields()
+    {
+        $fields = ['height', 'width', 'length'];
+        return array_map(function($elem) { return ['name' => $elem, 'unit' => 'CM']; }, $fields);
     }
 }

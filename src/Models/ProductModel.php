@@ -18,14 +18,14 @@ abstract class ProductModel
         $this->validator = $validator;
     }
 
-    public function setID($id)
+    public function setId($id)
     {
         $this->fields['id'] = $this->validator->validateInt($id);
         unset($this->errors['id']);
         return $this;
     }
 
-    public function setSKU($sku)
+    public function setSku($sku)
     {
         $this->fields['sku'] = $this->validator->validateString($sku);
         unset($this->errors['sku']);
@@ -46,12 +46,12 @@ abstract class ProductModel
         return $this;
     }
 
-    public function getID()
+    public function getId()
     {
         return $this->fields['id'] ?? false;
     }
 
-    public function getSKU()
+    public function getSku()
     {
         return $this->fields['sku'] ?? false;
     }
@@ -96,6 +96,7 @@ abstract class ProductModel
         }
     }
 
-    abstract public function getProperties();
+    abstract public function getDisplayProperties();
+    abstract public function getFields();
 
 }

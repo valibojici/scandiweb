@@ -1,21 +1,21 @@
-.product-card-container {
+.product-card-container{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
 
-body {
+body{
   position: relative;
   padding-bottom: 8vh;
   min-height: 92vh;
 }
 
-footer {
+footer{
   width: 100%;
   position: absolute;
   bottom: 0;
   height: 8vh;
 }
 
-.delete-checkbox {
+.delete-checkbox{
   transform: scale(1.5);
 }

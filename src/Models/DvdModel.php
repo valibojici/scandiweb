@@ -22,10 +22,15 @@ class DvdModel extends ProductModel
         return $this->fields['size'] ?? false;
     }
 
-    public function getProperties() : array
+    public function getDisplayProperties() : array
     {
         return [
             'size' => $this->getSize() . 'MB'
         ];
+    }
+
+    public function getFields()
+    {
+        return [['name' => 'size', 'unit' => 'MB']];
     }
 }

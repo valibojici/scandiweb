@@ -12,8 +12,8 @@ class ProductModelFactory
 
     public function getModel(string $type)
     {
-        $type = ucwords($type);
+        $type = ucwords(strtolower($type));
         $class = '\\App\\Models\\' . $type . 'Model';
-        return new $class($this->validator);
+        return class_exists($class) ? new $class($this->validator) : null;
     }
 }

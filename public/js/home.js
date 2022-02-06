@@ -23,7 +23,7 @@ deleteBtn.addEventListener('click', e => {
     let form = document.createElement('form');
     form.appendChild(postInfo);
     form.method = 'post';
-    form.action = 'delete-product';
+    form.action = 'delete-products';
     console.log(form);
 
     document.body.appendChild(form);
