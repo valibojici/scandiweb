@@ -1,8 +1,8 @@
 <?php
 const CONFIG = [
-    'HOST' => 'PLACEHOLDER',
-    'DB' => 'PLACEHOLDER',
-    'USER' => 'PLACEHOLDER',
-    'PASSWORD' => 'PLACEHOLDER',
+    'HOST' => ' ',
+    'DB' => ' ',
+    'USER' => ' ',
+    'PASSWORD' => ' ',
     'CHARSET' => 'utf8mb4',  
 ];
