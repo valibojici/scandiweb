@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 01, 2022 at 03:54 PM
--- Server version: 8.0.28
--- PHP Version: 8.1.2
+-- Generation Time: Feb 06, 2022 at 10:19 AM
+-- Server version: 8.0.27
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -75,7 +75,8 @@ CREATE TABLE `furniture` (
 --
 
 INSERT INTO `furniture` (`id`, `width`, `length`, `height`) VALUES
-(4, 15, 20, 30);
+(4, 15, 20, 30),
+(19, 34, 23, 345);
 
 -- --------------------------------------------------------
 
@@ -86,9 +87,9 @@ INSERT INTO `furniture` (`id`, `width`, `length`, `height`) VALUES
 CREATE TABLE `products` (
   `id` int NOT NULL,
   `sku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_bin NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_bin NOT NULL
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
@@ -96,9 +97,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `sku`, `name`, `price`, `type`) VALUES
-(2, 'SKU-1', 'Product1', '25.32', 'Book'),
+(2, 'SKU-1', 'Product1', '1.00', 'Book'),
 (3, 'SKU-2', 'Product2', '23.23', 'Dvd'),
-(4, 'SKU-3', 'Product3', '54.23', 'Furniture');
+(4, 'SKU-3', 'Product3', '54.23', 'Furniture'),
+(19, 'SKU-55', 'epic gaming chair', '234.23', 'Furniture');
 
 --
 -- Indexes for dumped tables
@@ -137,7 +139,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
