@@ -1,4 +1,4 @@
-<script src="./app/public/js/addproduct.js" defer></script>
+<script src="./public/js/addproduct.js" defer></script>
 <div class="container p-3 my-5">
     <div class="d-flex justify-content-between align-items-center">
         <div class="h2">
